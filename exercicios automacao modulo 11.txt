@@ -1,0 +1,1 @@
+https://github.com/HainnerSM/Exercicio_automacao_ebac/tree/main/cypress/integration
