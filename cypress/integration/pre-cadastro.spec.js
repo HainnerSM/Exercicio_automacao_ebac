@@ -12,9 +12,23 @@ context('Funcionalidade de pre-cadastro', () => {
 
     beforeEach(() => {
 
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.visit('minha-conta')
         cy.viewport(1280, 1024)
     });
+
+    it.only('Deve completar o pre-cadastro com suceso usando comandos customizados', () => {
+        let nome = faker.name.firstName()
+        let emailFaker = faker.internet.email(nome,)
+        let sobrenome = faker.name.lastName()
+        cy.preCadastro(emailFaker, 'senha!@forte', nome, sobrenome)
+
+        
+    });
+
+
+
+
+
 
     it('Pre-cadastro com suceso', () => {
         let nome = faker.name.firstName()

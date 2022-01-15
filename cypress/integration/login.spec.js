@@ -1,18 +1,38 @@
 /// <reference types="cypress" />
 var faker = require('faker');
+const perfil = require ('../fixtures/perfil.json')
 
 context('Funcionalidade Login', () => {
 
 
     beforeEach(() => {
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.visit('minha-conta')
         cy.viewport(1280, 1024)
+    });
+
+    afterEach(() => {
+        cy.screenshot()
     });
     let nomeCadastro = faker.name.firstName()
 
+
+
+    it.only('Deve fazer login com sucesso usando Fixture', () => {
+        cy.fixture('perfil').then(dados => {
+            cy.get('#username').type(dados.usuario)
+            cy.get('#password').type(dados.senha, {log: false})
+            cy.get('.woocommerce-form > .button').click()
+            cy.get('.woocommerce-MyAccount-content > :nth-child(3)').should('contain', 'A partir do painel de controle de sua conta, você pode ver suas compras recentes, gerenciar seus endereços de entrega e faturamento, e editar sua senha e detalhes da conta.')
+    
+
+
+        })
+        
+    });
+
     it('Realizar login com sucesso', () => {
-        cy.get('#username').type('aluno_ebac@teste.com')
-        cy.get('#password').type('teste@teste.com')
+        cy.get('#username').type(perfil.usuario)
+        cy.get('#password').type(perfil.senha, {log: false})
         cy.get('.woocommerce-form > .button').click()
         cy.get('.woocommerce-MyAccount-content > :nth-child(3)').should('contain', 'A partir do painel de controle de sua conta, você pode ver suas compras recentes, gerenciar seus endereços de entrega e faturamento, e editar sua senha e detalhes da conta.')
 

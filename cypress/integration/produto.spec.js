@@ -6,7 +6,7 @@ context('Selcionar produto', () => {
 
     beforeEach(() => {
 
-        cy.visit('http://lojaebac.ebaconline.art.br/produtos/')
+        cy.visit('produtos')
         cy.viewport(1280, 1024)
 
 
@@ -59,6 +59,18 @@ context('Selcionar produto', () => {
         cy.get('.cart-empty').should('contain', 'Seu carrinho está vazio.')
         
 
+    });
+
+    it.only('Deve adicionar produtos ao carrinho usando comandos customizados', () => {
+
+        cy.addProduct('Aero Daily Fitness Tee','XS', 'Brown', 3)
+
+    });
+
+    it.only('Deve adicionar produtos ao carrinho usando comandos customizados', () => {
+
+        cy.addProduct('Aero Daily Fitness Tee','S', 'Black', 12)
+        
     });
 
 
